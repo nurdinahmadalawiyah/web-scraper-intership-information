@@ -2,7 +2,7 @@ const RequestPromise = require("request-promise"),
   Cheerio = require("cheerio");
 
 const getProspleData = async () => {
-  const uri = "https://id.prosple.com/lowongan-magang-it";
+  const uri = "https://id.prosple.com/search-jobs?opportunity_types=2&locations=9714%2C9714%7C24768&defaults_applied=1&study_fields=502";
 
   let options = {
     uri,
@@ -13,15 +13,13 @@ const getProspleData = async () => {
 
   const $ = await RequestPromise(options);
   let dataScraping = [];
-  $(
-    "div[class='sc-iqHYGH Teaserstyle__Teaser-sc-egwky8-0 OpportunityTeaserstyle__OpportunityListing-sc-1vbfrdq-1 cTmJbI jYRkSI bIguzg']"
-  ).each(function (i, elem) {
+  $("li[class='SearchResultsstyle__SearchResult-sc-c560t5-1 hlOmzw']").each(function (_i, _elem) {
     let data = {
-      position: $(this).find("h6[class='OpportunityTeaserstyle__OpportunityTitle-sc-1vbfrdq-0 iOBUUH']").text().trim(),
+      position: $(this).find("a[class='JobTeaserstyle__JobTeaserTitleLink-sc-1p2iccb-2 eiICbF']").text().trim(),
       description: $(this).find("div[data-testid='raw-html']").text().trim(),
-      company: $(this).find("div[class='teaser__region teaser__region--header']").text().trim(),
+      company: $(this).find("header[class='Teaser__TeaserHeader-sc-129e2mv-1 JobTeaserstyle__JobTeaserHeader-sc-1p2iccb-1 iBnwQU bycdHT']").text().trim(),
       image: $(this).find("img[src]").attr("src"),
-      location: $(this).find("div[class='sc-gsTCUz hAURsc']").text().trim(),
+      location: $(this).find("div[class='sc-gsTCUz JobTeaserstyle__JobLocation-sc-1p2iccb-8 hAURsc jOLgFK']").text().trim(),
       link: $(this).find("a[href]").attr("href"),
     };
     dataScraping.push(data);
