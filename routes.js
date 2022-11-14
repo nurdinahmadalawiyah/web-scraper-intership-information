@@ -1,5 +1,5 @@
-const request = require("request"),
-ScrapingHandler = require('./scrapingHandler')
+const ScrapeProspleHandler = require('./scrapeProspleHandler')
+const ScrapeGlintsHandler = require('./scrapeGlintsHandler')
 
 const routes = [
   {
@@ -13,7 +13,14 @@ const routes = [
     method: "GET",
     path: "/prosple",
     handler: (request, h) => (
-        ScrapingHandler.getProspleData()
+      ScrapeProspleHandler.getProspleData()
+    ),
+  },
+  {
+    method: "GET",
+    path: "/glints",
+    handler: (request, h) => (
+      ScrapeGlintsHandler.getGlintsData()
     ),
   },
   {

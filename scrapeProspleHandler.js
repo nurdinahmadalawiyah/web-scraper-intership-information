@@ -30,5 +30,5 @@ const getProspleData = async () => {
 };
 
 module.exports = {
-  getProspleData,
+  getProspleData
 };
