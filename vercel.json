@@ -13,7 +13,7 @@
       },
       {
         "src": "/prosple",
-        "dest": "./src/scrapeProspleHandler"
+        "dest": "./src/scrapeProspleHandler.js"
       }
     ]
   }
