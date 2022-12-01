@@ -27,7 +27,7 @@ const routes = [
     method: "*",
     path: "/{any*}",
     handler: (request, h) => {
-      ScrapeGlintsHandler.getGlintsData()
+      return "Halaman tidak ditemukan";
     },
   },
 ];
